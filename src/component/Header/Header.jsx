@@ -6,7 +6,7 @@ const Header = () => {
     <>
       <div className={Styles.header}>
         <Link className={Styles.header__title} to="/">
-          Inuitive Quiz Hub
+          Objective Quiz App
         </Link>
         <hr className={Styles.header} />
       </div>
