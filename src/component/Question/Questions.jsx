@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 import "./Questions.css";
-// import { Button } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Link, useNavigate } from "react-router-dom";
 // .............................
 const Questions = ({ currQues, setCurrQues, questions, options, correct, score, setScore }) => {
-  // debugger;
   const [selected, setSelected] = useState();
   const [error, setError] = useState(false);
   //   ....................................................
@@ -57,12 +54,18 @@ const Questions = ({ currQues, setCurrQues, questions, options, correct, score, 
           </div>
 
           <div className="controls">
-            <Button variant="contained" color="secondary" size="large" style={{ width: 185 }} href="/" onClick={handleQuit}>
-              Quit
-            </Button>
-            <Button variant="contained" color="primary" size="large" style={{ width: 185 }} onClick={handleNext}>
+            <Link to="/">
+              <button
+                style={{ width: " 185px", background: " #ef28a2", border: "none", height: "45px", color: "white", fontSize: "20px", borderRadius: "5px" }}
+                onClick={handleQuit}>
+                Quit
+              </button>
+            </Link>
+            <button
+              style={{ width: " 185px", background: " rgb(148 40 239)", border: "none", height: "45px", color: "white", fontSize: "20px", borderRadius: "5px" }}
+              onClick={handleNext}>
               Next Question
-            </Button>
+            </button>
           </div>
         </div>
       </div>

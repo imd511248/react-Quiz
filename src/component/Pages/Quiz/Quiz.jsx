@@ -1,8 +1,7 @@
-import { CircularProgress } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import "./Quiz.css";
 import Questions from "../../Question/Questions";
-const Quiz = ({ name, score, setScore, questions, setQuestions }) => {
+const Quiz = ({ name, score, setScore, questions }) => {
   const [options, setOptions] = useState();
   const [currQues, setCurrQues] = useState(0);
   // ...................
@@ -13,6 +12,7 @@ const Quiz = ({ name, score, setScore, questions, setQuestions }) => {
   const handleShuffle = (optionss) => {
     return optionss.sort(() => Math.random() - 0.5);
   };
+  // debugger;
   return (
     <>
       <div className="quiz">
@@ -20,7 +20,7 @@ const Quiz = ({ name, score, setScore, questions, setQuestions }) => {
         {questions ? (
           <>
             <div className="quizInfo">
-              <span>{questions[currQues].category}</span>
+              <span>{questions[currQues]?.category}</span>
               <span> Score :{score}</span>
             </div>
             <Questions
@@ -34,7 +34,7 @@ const Quiz = ({ name, score, setScore, questions, setQuestions }) => {
             />
           </>
         ) : (
-          <CircularProgress style={{ margin: 100 }} color="inherit" size={150} thickness={1} />
+          "Loading..."
         )}
       </div>
     </>

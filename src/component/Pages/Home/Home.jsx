@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import Styles from "./Home.module.scss";
 import bg from "/quiz-app/src/assets/images/bg.jpg";
-import { Button, MenuItem, TextField } from "@material-ui/core";
 import React, { useState } from "react";
-import ErrorMessage from "../../errorMessage/ErrorMessage";
 const Home = ({ name, setName, fetchQuestions }) => {
+  const [category, setCategories] = useState("");
+  const [difficulty, setDifficulty] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
   const Categories = [
     {
       category: "General Knowledge",
@@ -34,10 +36,7 @@ const Home = ({ name, setName, fetchQuestions }) => {
     { category: "Japanese Anime", value: 31 },
     { category: "Cartoon and Animations", value: 32 },
   ];
-  const [category, setCategories] = useState("");
-  const [difficulty, setDifficulty] = useState(false);
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+
   const handleSubmit = () => {
     if (!category || !difficulty || !name) {
       setError(true);
@@ -48,36 +47,41 @@ const Home = ({ name, setName, fetchQuestions }) => {
       navigate("/quiz");
     }
   };
+  console.log(category);
+
   return (
     <>
       <div className={Styles.content}>
         <div className={Styles.content__setting}>
-          <span style={{ fontSize: 30 }}>Fill all input field </span>
+          <span>Fill all input field </span>
           <div className={Styles.content__setting__settingSelect}>
-            {error && <ErrorMessage>Please fill all the field</ErrorMessage>}
-            <TextField label="Enter Your Name" variant="outlined" style={{ marginBottom: 25 }} onChange={(e) => setName(e.target.value)} />
-            <TextField select label="Select Category" variant="outlined" style={{ marginBottom: 30 }} onChange={(e) => setCategories(e.target.value)} value={category}>
+            {error && <span>Please fill all the field</span>}
+            <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Enter Your Name" style={{ marginBottom: 25, padding: "15px 0 15px 20px" }} />
+            <select id="cars" style={{ marginBottom: 25, padding: "15px 0 15px 20px" }} onChange={(e) => setCategories(e.target.value)} value={category}>
+              <option value="">Select Category</option>
               {Categories?.map((cat) => (
-                <MenuItem key={cat.category} value={cat.value}>
+                <option key={cat.category} value={cat.value}>
                   {cat.category}
-                </MenuItem>
+                </option>
               ))}
-            </TextField>
+            </select>
 
-            <TextField select label="Select Difficulty" variant="outlined" style={{ marginBottom: 30 }} onChange={(e) => setDifficulty(e.target.value)} value={difficulty}>
-              <MenuItem value="easy" key="Easy">
+            <select style={{ marginBottom: 25, padding: "15px 0 15px 20px" }} onChange={(e) => setDifficulty(e.target.value)} value={difficulty}>
+              <option>Type</option>
+              <option value="easy" key="Easy">
                 Easy
-              </MenuItem>
-              <MenuItem value="medium" key="Medium">
+              </option>
+              <option value="medium" key="Medium">
                 Medium
-              </MenuItem>
-              <MenuItem value="hard" key="Hard">
+              </option>
+              <option value="hard" key="Hard">
                 Hard
-              </MenuItem>
-            </TextField>
-            <Button variant="contained" color="primary" size="large" onClick={handleSubmit}>
+              </option>
+            </select>
+
+            <button style={{ marginBottom: 25, padding: "15px 0 15px 20px", background: "#8888e4", borderRadius: "5px" }} onClick={handleSubmit}>
               Start Quiz
-            </Button>
+            </button>
           </div>
         </div>
         <img src={bg} alt="quiz img" className={Styles.content__banner} />

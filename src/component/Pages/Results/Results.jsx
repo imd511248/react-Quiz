@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 import "./Results.css";
 const Results = ({ name, score }) => {
   const navigate = useNavigate();
@@ -14,9 +14,22 @@ const Results = ({ name, score }) => {
     <>
       <div className="result">
         <span className="title">Final Score: {score}</span>
-        <Button variant="contained" color="secondary" size="large" style={{ alignSelf: "center", marginTop: 20 }} href="/">
-          Go To HomePage
-        </Button>
+        <Link to="/">
+          <button
+            style={{
+              width: " 185px",
+              background: " rgb(148 40 239)",
+              border: "none",
+              height: "45px",
+              color: "white",
+              fontSize: "20px",
+              borderRadius: "5px",
+              alignSelf: "center",
+              marginTop: "10px",
+            }}>
+            Go To HomePage
+          </button>
+        </Link>
       </div>
     </>
   );
