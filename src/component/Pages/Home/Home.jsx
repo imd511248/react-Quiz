@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Styles from "./Home.module.scss";
-import bg from "/quiz-app/src/assets/images/bg.jpg";
+import bg from "../../../assets/images/bg.jpg";
 import React, { useState } from "react";
 const Home = ({ name, setName, fetchQuestions }) => {
   const [category, setCategories] = useState("");
